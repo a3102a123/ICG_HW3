@@ -18,11 +18,17 @@ in vec4 worldPos;
 out vec4 color;
 void main()
 {
+	// TODO : Calculate the Blinn-Phong Shading
+	// Hint :
+	//		  1. See the formula of Phong-Blinn lighting model / reflection model (you can refer to "ICG_4Shading" slides)
+	//		  2. For specular , you can using the Halfway angle 
+	//		  3. The "albedo" variable is the color(texture) of a pixel
+
 	vec3 pos = vec3(worldPos.x, worldPos.y, worldPos.z);
 	vec3 L = normalize(WorldLightPos - pos);
 	vec3 V = normalize(WorldCamPos - pos);
 	vec3 R = reflect(-L, normal);
-	vec3 H =normalize( (L+V));
+	vec3 H = normalize( (L+V));
 
 	vec4 albedo = texture2D(texture, uv);
 
