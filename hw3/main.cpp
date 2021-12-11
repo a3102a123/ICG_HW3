@@ -28,7 +28,7 @@ void idle();
 void reshape(GLsizei w, GLsizei h);
 void keyboard(unsigned char key, int x, int y);
 void DrawLightPoint();
-void DrawUmbreon();
+void DrawModel();
 void LoadTexture(unsigned int&, const char*);
 void Sleep(int ms);
 
@@ -152,7 +152,7 @@ void display() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	DrawLightPoint();
-	DrawUmbreon();
+	DrawModel();
 	angle += speed;
 	End = clock();
 	glutSwapBuffers();
@@ -276,7 +276,7 @@ void idle() {
 	glutPostRedisplay();
 }
 
-void DrawUmbreon()
+void DrawModel()
 {
 	glUseProgram(program);
 
