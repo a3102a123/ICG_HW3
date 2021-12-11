@@ -13,7 +13,7 @@ out vec4 worldPos;
 
 void main() {
   gl_Position = P * V * M * vec4(in_position, 1.0);
-  normal = normalize((transpose(inverse(M)) * vec4(in_normal, 1.0)).xyz);
+  normal = normalize((M * vec4(in_normal, 1.0)).xyz);
   uv= texcoord;
   worldPos = M * vec4(in_position, 1.0);
 }
