@@ -32,7 +32,7 @@ void DrawUmbreon();
 void LoadTexture(unsigned int&, const char*);
 void Sleep(int ms);
 
-GLuint program,Phongprogram, Toonprogram, Edgeprogram;
+GLuint program,Phongprogram, Toonprogram;
 GLuint VAO, VBO;
 unsigned int ToonTexture, modeltexture;
 float windowSize[2] = { 600, 600 };
@@ -40,6 +40,7 @@ float angle = 0.0f;
 glm::vec3 WorldLightPos = glm::vec3(2, 5, 5);
 glm::vec3 WorldLightStep = glm::vec3(2, 5, 5) / 5.0f;
 glm::vec3 WorldCamPos = glm::vec3(7.5, 5.0, 7.5);
+bool EdgeFlag = false;
 
 // feeling free to adjust below value to fit your computer efficacy.
 #define Rotate_Speed 1
@@ -79,10 +80,6 @@ void shaderInit() {
 	vert = createShader("Shaders/Toon.vert", "vertex");
 	frag = createShader("Shaders/Toon.frag", "fragment");
 	Toonprogram = createProgram(vert, frag);
-
-	vert = createShader("Shaders/Edge.vert", "vertex");
-	frag = createShader("Shaders/Edge.frag", "fragment");
-	Edgeprogram = createProgram(vert, frag);
 
 	program = Phongprogram;
 }
@@ -259,7 +256,7 @@ void keyboard(unsigned char key, int x, int y) {
 		}
 		case '3':
 		{
-			program = Edgeprogram;
+			EdgeFlag = !EdgeFlag;
 			break;
 		}
 		default:
@@ -330,6 +327,9 @@ void DrawUmbreon()
 
 	GLuint gloss = glGetUniformLocation(program, "gloss");
 	glUniform1i(gloss, 100);
+
+	GLuint EdgeFlagID = glGetUniformLocation(program, "EdgeFlag");
+	glUniform1i(EdgeFlagID, EdgeFlag);
 
 	glBindVertexArray(VAO);
 	//glDrawArrays(GL_QUADS, 0, 4 * model->fNum);

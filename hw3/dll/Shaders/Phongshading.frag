@@ -10,6 +10,7 @@ uniform vec3 La;
 uniform vec3 Ld;
 uniform vec3 Ls;
 uniform int  gloss;
+uniform bool EdgeFlag;
 
 in vec2 uv;
 in vec3 normal;
@@ -34,6 +35,12 @@ void main()
 	
 	vec3 specular = mix(specularPhong, specularBlinn, 0);
 
+	float edge;
+	vec4 edge_color = vec4(1, 1, 1, 1);
+	edge = 1 - max(0, dot(normal, V));
 	color = ambient + diffuse + vec4(specular, 1.0);
+	if(EdgeFlag){
+		color += pow(edge,5) * edge_color;
+	}
 	//color = texture2D(texture, uv);
 } 
