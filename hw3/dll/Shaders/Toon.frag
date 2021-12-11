@@ -25,7 +25,7 @@ void main()
  vec4 edge_color = vec4(1, 1, 1, 1)  * pow(edge_intensity,5);
  vec4 diffuse;
 
- // it's the color which only contain texture , you need change the output to toon shading result
- color = albedo;
+ // it's the color which only contain darker texture to show different shader, you need to change the output to toon shading result
+ color = albedo * 0.2;
 
 }

@@ -26,8 +26,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="dll\Shaders\Edge.frag" />
-    <None Include="dll\Shaders\Edge.vert" />
     <None Include="dll\Shaders\Phongshading.frag" />
     <None Include="dll\Shaders\Phongshading.vert" />
     <None Include="dll\Shaders\Toon.frag" />

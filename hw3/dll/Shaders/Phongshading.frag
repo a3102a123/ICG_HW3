@@ -34,6 +34,6 @@ void main()
 	float edge_intensity = 0;
 	vec4 edge_color = vec4(1, 1, 1, 1)  * pow(edge_intensity,5);
 
-	// it's the color which only contain texture , you need change the output to phong shading result  
+	// it's the color which only contain texture , you need to change the output to phong shading result  
 	color = albedo;
 } 
