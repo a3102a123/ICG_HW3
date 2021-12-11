@@ -1,6 +1,8 @@
 uniform sampler2D texture;
 uniform vec3 WorldLightPos;
+uniform vec3 WorldCamPos;
 uniform vec3 Kd;
+uniform bool EdgeFlag;
 
 in vec2 uv;
 in vec3 normal;
@@ -10,19 +12,20 @@ out vec4 color;
 
 void main()
 {
- vec3 pos = vec3(worldPos.x, worldPos.y, worldPos.z);
- vec3 L = normalize(WorldLightPos - pos);
+ // TODO : Calculate the Toon Shading with 5 level of threshold
+ // Hint :
+ //		  1. Calculate the color inteensity determined by the angles between the Light and normal vectors
+ //		  2. The "albedo" variable is the color(texture) of a pixel
+ //		  3. Using EdgeFlag to determine whether or not to add the edge color to "every pixel"
+ //		  4. Using the angle between view and pixel to determine the edge intensity (be careful of that the pixel of edge should have higher intensity of edge color)
+ //				- you can using the color you like to draw the edge
 
  vec4 albedo = texture2D(texture, uv);
+ float edge_intensity = 0;
+ vec4 edge_color = vec4(1, 1, 1, 1)  * pow(edge_intensity,5);
  vec4 diffuse;
 
-float intensity = dot(L,normal);
+ // it's the color which only contain texture , you need change the output to toon shading result
+ color = albedo;
 
-if (intensity > 0.95)      diffuse = vec4(1.0, 1.0, 1.0, 1.0);
-else if (intensity > 0.75) diffuse = vec4(0.8, 0.8, 0.8, 1.0);
-else if (intensity > 0.50) diffuse = vec4(0.6, 0.6, 0.6, 1.0);
-else if (intensity > 0.25) diffuse = vec4(0.4, 0.4, 0.4, 1.0);
-else diffuse = vec4(0.2, 0.2, 0.2, 1.0);
-
- color = diffuse * vec4(Kd, 1.0) * albedo;
 }
