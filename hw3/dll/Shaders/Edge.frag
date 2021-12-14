@@ -1,3 +1,4 @@
+#version 430
 uniform vec3 WorldCamPos;
 
 in vec3 normal;

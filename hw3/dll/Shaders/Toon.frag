@@ -1,3 +1,4 @@
+#version 430
 uniform sampler2D texture;
 uniform vec3 WorldLightPos;
 uniform vec3 WorldCamPos;
