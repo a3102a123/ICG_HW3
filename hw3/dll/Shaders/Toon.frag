@@ -25,11 +25,9 @@ void main()
 
  float intensity = dot(L,normal);
 
- if (intensity > 0.95)      diffuse = vec4(1.0, 1.0, 1.0, 1.0);
- else if (intensity > 0.75) diffuse = vec4(0.8, 0.8, 0.8, 1.0);
- else if (intensity > 0.50) diffuse = vec4(0.6, 0.6, 0.6, 1.0);
- else if (intensity > 0.25) diffuse = vec4(0.4, 0.4, 0.4, 1.0);
- else diffuse = vec4(0.2, 0.2, 0.2, 1.0);
+ if (intensity > 0.75)      diffuse = vec4(0.8, 0.8, 0.8, 1.0);
+ else if (intensity > 0.3) diffuse = vec4(0.6, 0.6, 0.6, 1.0);
+ else diffuse = vec4(0.4, 0.4, 0.4, 1.0);
 
  edge = 1 - max(0, dot(normal, V));
 
